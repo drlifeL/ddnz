@@ -1,13 +1,40 @@
 package xyz.flyly.other;
 
+import sun.misc.Unsafe;
+
+import java.lang.reflect.Field;
 import java.util.concurrent.locks.LockSupport;
 
 public class Test {
     public static void main(String[] args) throws Exception {
 //        testParkAndUnPark();
 
-        testAb();
+//        testAb();
 
+        class A {
+            public int val;
+        }
+        A a = new A();
+        Unsafe unsafe = getUnsafe();
+        // 先拿到 val 在 A 对象的偏移量
+        long offset = unsafe.objectFieldOffset(a.getClass().getField("val"));
+        // 调用 CAS 方法来设置变量
+        System.out.println("更改前：" + a.val);
+        unsafe.compareAndSwapInt(a, offset, 0, 1);
+        System.out.println("更改后：" + a.val);
+
+    }
+
+    private static Unsafe getUnsafe() {
+        try {
+            Class<?> unsafeClass = Class.forName("sun.misc.Unsafe");
+            Field field = unsafeClass.getDeclaredField("theUnsafe");
+            field.setAccessible(true);
+            return (Unsafe) field.get(null);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public static void testAb() {

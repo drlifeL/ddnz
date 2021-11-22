@@ -1,6 +1,8 @@
 package xyz.flyly.other;
 
 
+import xyz.flyly.leetcode.utils.ListNode;
+
 public class Main {
     private String name;
 
@@ -61,33 +63,38 @@ public class Main {
 //        t.start();
 //        Thread.sleep(1000);
 
-        Object a = new Object();
-        new Thread(() -> {
+//        Object a = new Object();
+//        new Thread(() -> {
+//
+//            synchronized (a) {
+//                try {
+//                    System.out.println(Thread.currentThread().getName() + " - 获得锁");
+//                    Thread.sleep(1000);
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//
+//            }
+//
+//
+//        }).start();
+//        new Thread(() -> {
+//            synchronized (a) {
+//                try {
+//                    System.out.println(Thread.currentThread().getName() + " - 获得锁");
+//                    Thread.sleep(1000);
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }).start();
+//
+//        Thread.sleep(1500);
+        ListNode node = ListNode.createListNode(1, 8);
+        ListNode.printListNode(node);
+        ListNode f1 = f1(node);
+        ListNode.printListNode(f1);
 
-            synchronized (a) {
-                try {
-                    System.out.println(Thread.currentThread().getName() + " - 获得锁");
-                    Thread.sleep(1000);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-            }
-
-
-        }).start();
-        new Thread(() -> {
-            synchronized (a) {
-                try {
-                    System.out.println(Thread.currentThread().getName() + " - 获得锁");
-                    Thread.sleep(1000);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
-
-        Thread.sleep(1500);
 
     }
 
@@ -108,16 +115,15 @@ public class Main {
         return -1;
     }
 
-
     public static void quickSort(int[] arr, int left, int right) {
         int i = left;
         int j = right;
         int temp = arr[left];
         while (i != j) {
-            while (arr[j] >= temp && i < j) {
+            while (i < j && arr[j] >= temp) {
                 j--;
             }
-            while (arr[i] <= temp && i < j) {
+            while (i < j && arr[i] <= temp) {
                 i++;
             }
             if (i < j) {
@@ -132,6 +138,14 @@ public class Main {
         quickSort(arr, i + 1, right);
     }
 
+    public static ListNode f1(ListNode head) {
+        if (head == null || head.next == null) return head;
+        ListNode nextNode = head.next;
+        ListNode headNode = f1(head.next);
+        head.next = null;
+        nextNode.next = head;
+        return headNode;
+    }
 
     public void sayHi(String name) {
         new InnerClass().setName(name);
