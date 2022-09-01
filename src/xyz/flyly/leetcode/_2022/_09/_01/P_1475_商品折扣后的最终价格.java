@@ -8,11 +8,11 @@ import java.util.Arrays;
  * @author : luoyang
  * @since : 2022/9/1 15:41
  **/
-public class _1475_商品折扣后的最终价格 {
+public class P_1475_商品折扣后的最终价格 {
 	public static void main(String[] args) {
 		int[] prices = {8, 4, 6, 2, 3};
 
-		int[] result = new _1475_商品折扣后的最终价格().finalPrices(prices);
+		int[] result = new P_1475_商品折扣后的最终价格().finalPrices(prices);
 
 		System.out.println(Arrays.toString(result));
 	}

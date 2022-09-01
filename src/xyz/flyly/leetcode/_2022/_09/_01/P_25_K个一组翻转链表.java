@@ -9,12 +9,12 @@ import java.util.LinkedList;
  * @author : luoyang
  * @since : 2022/9/1 15:59
  **/
-public class _25_K个一组翻转链表 {
+public class P_25_K个一组翻转链表 {
 	public static void main(String[] args) {
 		ListNode head = ListNode.createListNode(1, 5);
 		int k = 3;
 
-		ListNode result = new _25_K个一组翻转链表().reverseKGroup(head, k);
+		ListNode result = new P_25_K个一组翻转链表().reverseKGroup(head, k);
 
 		ListNode.printListNode(result);
 	}
