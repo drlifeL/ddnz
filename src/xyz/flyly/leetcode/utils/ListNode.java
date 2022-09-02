@@ -16,6 +16,16 @@ public class ListNode {
         this.next = next;
     }
 
+    public static ListNode createListNode(int ...values){
+        ListNode vNode = new ListNode();
+        ListNode temp = vNode;
+	    for (int value : values) {
+			temp.next = new ListNode(value);
+			temp = temp.next;
+	    }
+		return vNode.next;
+    }
+
     public static ListNode createListNode(int min, int max) {
         ListNode head = new ListNode(-1);
         ListNode temp = head;
