@@ -12,4 +12,15 @@ public class AnswerPrinter {
 		System.out.println(Arrays.toString(arr));
 	}
 
+	/**
+	 * 打印二维数组
+	 *
+	 * @param arr
+	 */
+	public static void print2dMatrix(int[][] arr) {
+		for (int[] ints : arr) {
+			System.out.println(Arrays.toString(ints));
+		}
+	}
+
 }
